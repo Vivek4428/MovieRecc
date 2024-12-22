@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import GenrePage from './pages/GenrePage';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import About from './components/About';
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/genres/:genre" element={<GenrePage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/about" element={<About />} />
             </Routes>
             <Footer />
         </Router>

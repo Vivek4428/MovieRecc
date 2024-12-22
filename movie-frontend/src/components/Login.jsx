@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../api/movieApi';
-import "./Auth.css";
+import './Auth.css';
 
 const Login = () => {
-    const [formData, setFormData] = useState({ email: '', password: '' });
+    const [formData, setFormData] = useState({ username: '', password: '' });
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ const Login = () => {
             localStorage.setItem('token', data.token);
             navigate('/');
         } catch (err) {
-            setError('Invalid credentials');
+            setError('Invalid username or password');
         }
     };
 
@@ -29,10 +29,10 @@ const Login = () => {
                 <h2>Login</h2>
                 {error && <p className="error">{error}</p>}
                 <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    value={formData.username}
                     onChange={handleChange}
                     required
                 />
@@ -49,6 +49,5 @@ const Login = () => {
         </div>
     );
 };
-
 
 export default Login;

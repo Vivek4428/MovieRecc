@@ -33,12 +33,20 @@ public class AuthController {
 
     // Signup Endpoint
     @PostMapping("/signup")
-    public ResponseEntity<User> signup(@Valid @RequestBody User user) {
+    public ResponseEntity<?> signup(@Valid @RequestBody User user) {
         try {
+            // Ensure unique username and email
+            if (userService.isUsernameTaken(user.getUsername())) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Username is already taken");
+            }
+            if (userService.isEmailTaken(user.getEmail())) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Email is already registered");
+            }
+
             User createdUser = userService.signup(user);
-            return ResponseEntity.ok(createdUser);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
     }
 
@@ -46,6 +54,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest) {
         try {
+            // Authenticate the user
             Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                     loginRequest.getUsername(),
@@ -53,17 +62,21 @@ public class AuthController {
                 )
             );
 
+            // Generate JWT token
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String jwtToken = jwtUtil.generateToken(userDetails.getUsername());
 
             return ResponseEntity.ok(new LoginResponse(jwtToken));
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");
         }
     }
 
+    // Global Exception Handler
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
     }
 }
