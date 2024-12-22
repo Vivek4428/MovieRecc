@@ -26,7 +26,7 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final UserService userService;
 
-    public SecurityConfig(@Lazy JwtAuthenticationFilter jwtAuthFilter,@Lazy UserService userService) {
+    public SecurityConfig(@Lazy JwtAuthenticationFilter jwtAuthFilter, @Lazy UserService userService) {
         this.jwtAuthFilter = jwtAuthFilter;
         this.userService = userService;
     }
@@ -61,7 +61,7 @@ public class SecurityConfig {
                 return corsConfig;
             }))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/movies","/api/signup", "/api/login").permitAll()
+                .requestMatchers("/api/movies", "/api/signup", "/api/login").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
