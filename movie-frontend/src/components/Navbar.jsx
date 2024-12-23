@@ -1,27 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./NavBar.css"; // Importing the CSS file
+import "./NavBar.css";
 
 const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Check if a token exists in localStorage
         const token = localStorage.getItem("token");
-        setIsLoggedIn(!!token); // Set login state based on token presence
+        setIsLoggedIn(!!token);
     }, []);
 
     const handleSearch = (e) => {
         e.preventDefault();
-        // Handle search logic here
+        // Implement search logic
+        console.log(`Searching for: ${searchQuery}`);
     };
 
     const handleLogout = () => {
-        localStorage.removeItem("token"); // Remove the token
-        setIsLoggedIn(false); // Update login state
-        navigate("/login"); // Redirect to login page
+        localStorage.removeItem("token");
+        setIsLoggedIn(false);
+        navigate("/login");
+    };
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
     };
 
     return (
@@ -29,7 +34,7 @@ const Navbar = () => {
             <div className="brand">
                 <Link to="/">MovieRecc</Link>
             </div>
-            <div className="NavBarContainer">
+            <div className={`NavBarContainer ${isMenuOpen ? "active" : ""}`}>
                 <form onSubmit={handleSearch}>
                     <input
                         type="text"
@@ -53,6 +58,11 @@ const Navbar = () => {
                         </button>
                     )}
                 </div>
+            </div>
+            <div className="hamburger" onClick={toggleMenu}>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </nav>
     );
