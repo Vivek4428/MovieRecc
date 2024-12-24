@@ -15,10 +15,10 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await loginUser(formData);
-            localStorage.setItem('token', data.token);
+            await loginUser(formData);
             navigate('/');
         } catch (err) {
+            console.log("error : ",err)
             setError('Invalid username or password');
         }
     };

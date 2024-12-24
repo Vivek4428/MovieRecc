@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import './MovieGrid.css'; // Import the CSS file
 import { fetchMovies } from '../api/movieApi';
 
@@ -6,6 +7,11 @@ const MovieGrid = () => {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
+
+    const handleMovieClick = (movie) => {
+        navigate("/movie", { state: { movie } }); // Pass the selected movie to the Movie page
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,7 +46,7 @@ const MovieGrid = () => {
     return (
         <div className="grid">
             {movies.map((movie) => (
-                <div className="movie" key={movie.id}>
+                <div className="movie" key={movie.id} onClick={() => handleMovieClick(movie)}>
                     <img
                         src={movie.poster || 'https://via.placeholder.com/300x450'}
                         alt={movie.title || 'Untitled Movie'}

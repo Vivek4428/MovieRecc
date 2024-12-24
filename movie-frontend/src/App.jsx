@@ -7,6 +7,8 @@ import GenrePage from './pages/GenrePage';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import About from './components/About';
+import Search from './components/Search';
+import Movie from './pages/Movie'
 import NotFound from './pages/NotFound'; // New NotFound component
 
 function App() {
@@ -22,12 +24,17 @@ function App() {
                     {/* Genre Pages (dynamic) */}
                     <Route path="/genre/:genre" element={<GenrePage />} />
 
+                    <Route path="/search" element={<Search />} />
+
+
                     {/* Authentication */}
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
 
                     {/* About Page */}
                     <Route path="/about" element={<About />} />
+
+                    <Route path="/movie" element={<Movie />} />
 
                     {/* Catch-all route for 404 errors */}
                     <Route path="*" element={<NotFound />} />

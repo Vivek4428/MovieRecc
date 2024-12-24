@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { searchMovies } from "../api/movieApi"; // Import searchMovies from updated API
+import { searchMovies } from "../api/movieApi"; 
 import "./NavBar.css";
 
 const Navbar = () => {
@@ -19,14 +19,25 @@ const Navbar = () => {
     const handleSearch = async (e) => {
         e.preventDefault();
         setIsSearching(true);
+        const filteredMovies = [];
         try {
-            const results = await searchMovies(searchQuery);
-            console.log("Search Results:", results);
-            navigate("/search", { state: { results } }); // Navigate to a search results page
+            const results = await searchMovies(); // Fetch all movies
+            const query = searchQuery.toLowerCase(); // Convert search query to lowercase
+            // Filter movies based on the search query
+            results.forEach((movie) => {
+                if (movie.title.toLowerCase().includes(query)) {
+                    filteredMovies.push(movie);
+                }
+            });
+
+            console.log("Filtered Movies:", filteredMovies);
+
+            // Navigate to the search results page and pass the filtered movies
+            navigate("/search", { state: { results: filteredMovies } });
         } catch (error) {
-            console.error("Error searching movies:", error.message);
+            console.error("Error during movie search:", error.message);
         } finally {
-            setIsSearching(false);
+            setIsSearching(false); // End the search
         }
     };
 
@@ -44,7 +55,6 @@ const Navbar = () => {
         setIsDropdownOpen(false);
         navigate(`/genre/${genre}`);
     };
-      
 
     return (
         <nav>

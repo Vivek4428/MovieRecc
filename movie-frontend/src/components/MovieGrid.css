@@ -50,3 +50,57 @@
     font-size: 1.2rem;
     color: gray;
 }
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .details h3 {
+        font-size: 0.95rem;
+    }
+
+    .details p {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 0.8rem;
+    }
+
+    .movie {
+        padding: 0.8rem;
+    }
+
+    .details h3 {
+        font-size: 0.9rem;
+    }
+
+    .details p {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.5rem;
+    }
+
+    .movie {
+        padding: 0.5rem;
+    }
+
+    .details h3 {
+        font-size: 0.85rem;
+    }
+
+    .details p {
+        font-size: 0.7rem;
+    }
+}

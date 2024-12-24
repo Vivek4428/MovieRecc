@@ -41,15 +41,12 @@ export const fetchMovieById = async (id) => {
 };
 
 // Search movies by query
-export const searchMovies = async (query) => {
-    if (!query.trim()) {
-        throw new Error("Search query cannot be empty.");
-    }
+export const searchMovies = async () => {
     try {
-        const response = await API.get(`/movies/search/${query}`);
+        const response = await API.get(`/movies`);
         return response.data;
     } catch (error) {
-        console.error(`Error searching movies with query "${query}":`, error.response || error);
+        console.error(`api movie list fetching error `);
         throw new Error("Unable to search movies. Please try again later.");
     }
 };
@@ -72,6 +69,7 @@ export const fetchMoviesByGenre = async (genre) => {
 export const loginUser = async (formData) => {
     try {
         const response = await API.post("/login", formData);
+        // console.log("response : ",response.data)
         if (response.data.token) {
             localStorage.setItem("token", response.data.token);
         }
