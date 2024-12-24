@@ -52,7 +52,7 @@ const GenrePage = () => {
             ) : (
                 <div className="grid">
                     {movies.map((movie) => (
-                        <div className="movie" key={movie.genres[0]}>
+                        <div className="movie" key={movie.genre}>
                             <img src={movie.poster || '/placeholder.jpg'} alt={movie.title} />
                             <h3>{movie.title}</h3>
                         </div>

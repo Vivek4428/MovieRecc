@@ -38,14 +38,12 @@ const Navbar = () => {
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-    // Toggle dropdown visibility
-    // const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
-    const toggleDropdown = () => {
-        setIsDropdownOpen((prev) => {
-          console.log("Dropdown State Changed:", !prev);
-          return !prev;
-        });
-      };
+    const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
+
+    const handleGenreClick = (genre) => {
+        setIsDropdownOpen(false);
+        navigate(`/genre/${genre}`);
+    };
       
 
     return (
@@ -61,7 +59,7 @@ const Navbar = () => {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
-                    <button type="submit" disabled={isSearching}>
+                    <button type="submit" disabled={isSearching} className="submit-button">
                         {isSearching ? "Searching..." : "Search"}
                     </button>
                 </form>
@@ -91,7 +89,12 @@ const Navbar = () => {
                                     "Fantasy",
                                 ].map((genre) => (
                                     <li key={genre}>
-                                        <Link to={`/genre/${genre}`}>{genre}</Link>
+                                        <button
+                                            onClick={() => handleGenreClick(genre)}
+                                            className="genre-button"
+                                        >
+                                            {genre}
+                                        </button>
                                     </li>
                                 ))}
                             </ul>

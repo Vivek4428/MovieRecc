@@ -15,6 +15,7 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     padding: 1rem;
+    justify-items: start;
 }
 
 .movie {
@@ -40,7 +41,7 @@
 .movie h3 {
     margin-top: 0.5rem;
     font-size: 1.1rem;
-    color: #555;
+    color: #c4c3c4;
 }
 
 .loading-message {

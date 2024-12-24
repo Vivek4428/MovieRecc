@@ -1,5 +1,4 @@
 nav {
-  width: auto;
   height: 80px;
   display: flex;
   align-items: center;
@@ -7,18 +6,23 @@ nav {
   padding: 0 4%;
   background: #0c111b;
   position: relative;
-  z-index: 9;
+  z-index: 10;
 }
 
 .brand {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: bold;
   color: white;
 }
 
 .brand a {
   text-decoration: none;
   color: #1f80e0;
+  transition: color 0.3s ease;
+}
+
+.brand a:hover {
+  color: #e63946;
 }
 
 .NavBarContainer {
@@ -34,6 +38,7 @@ nav {
 .NavBarContainer form {
   display: flex;
   align-items: center;
+  margin-right: 1rem;
 }
 
 .NavBarContainer input {
@@ -45,22 +50,36 @@ nav {
   background: #1f1f1f;
   font-size: 1rem;
   margin-right: 0.5rem;
+  transition: background 0.3s ease-in-out;
 }
 
-.NavBarContainer button {
+.NavBarContainer input:focus {
+  background: #333;
+}
+
+.submit-button {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 5px;
   background: #1f80e0;
   color: white;
+  font-size: 1rem;
   cursor: pointer;
-  margin-right: 1.5rem;
+  transition: background 0.3s ease-in-out;
+}
+
+.submit-button:disabled {
+  background: #4c5c6c;
+  cursor: not-allowed;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: #1464b3;
 }
 
 .links {
   display: flex;
   align-items: center;
-  transition: transform 0.3s ease-in-out;
 }
 
 .links a,
@@ -70,6 +89,12 @@ nav {
   color: white;
   font-size: 1rem;
   font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.links a:hover,
+.links button:hover {
+  color: #1f80e0;
 }
 
 .logout-button {
@@ -78,6 +103,11 @@ nav {
   border-radius: 5px;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.logout-button:hover {
+  background: #b52534;
 }
 
 .dropdown {
@@ -96,7 +126,7 @@ nav {
 }
 
 .dropdown-menu {
-  display: none; /* Hide by default */
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
@@ -105,13 +135,12 @@ nav {
   padding: 0.5rem 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   z-index: 99;
-  transition: all 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .dropdown-menu {
   display: flex;
   opacity: 1;
-  pointer-events: auto;
   transform: translateY(0);
 }
 
@@ -119,15 +148,19 @@ nav {
   list-style: none;
 }
 
-.dropdown-menu li a {
+.dropdown-menu li .genre-button {
   display: block;
   padding: 0.5rem 1rem;
   text-decoration: none;
   color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
   transition: background 0.3s ease-in-out;
 }
 
-.dropdown-menu li a:hover {
+.dropdown-menu li .genre-button:hover {
   background: #1f80e0;
 }
 
@@ -165,23 +198,40 @@ nav {
 
   .NavBarContainer form {
     margin: 0.5rem 0;
+    width: 90%;
+  }
+
+  .NavBarContainer input {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .submit-button {
+    width: 100%;
+    margin-top: 0.5rem;
   }
 
   .links {
     flex-direction: column;
+    width: 100%;
+    align-items: center;
   }
 
   .links a,
   .links button {
     margin: 0.5rem 0;
-  }
-
-  .hamburger {
-    display: flex;
+    width: 90%;
+    text-align: center;
   }
 
   .dropdown-menu {
     position: static;
+    width: 100%;
     box-shadow: none;
+    padding: 0;
+  }
+
+  .hamburger {
+    display: flex;
   }
 }
