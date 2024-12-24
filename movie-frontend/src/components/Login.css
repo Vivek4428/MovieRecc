@@ -4,20 +4,21 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    width: 90%; /* Adjusted for better responsiveness */
+    width: 90%;
     max-width: 400px;
     padding: 20px;
-    background-color: #ffffff; /* Changed for a cleaner look */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Increased shadow for more depth */
-    border-radius: 15px; /* Softer corners */
-    animation: fadeIn 0.5s ease-in-out; /* Added fade-in animation */
+    background-color: #f9f9f9;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .auth-container h2 {
     margin-bottom: 20px;
-    font-size: 26px; /* Slightly larger for better readability */
-    color: #222; /* Darker for stronger contrast */
-    font-weight: bold; /* Emphasized text */
+    font-size: 26px;
+    color: #222;
+    font-weight: bold;
+    text-align: center;
 }
 
 .auth-container form {
@@ -28,46 +29,46 @@
 
 .auth-container input {
     margin-bottom: 15px;
-    padding: 12px; /* Increased padding for better touch interaction */
+    padding: 12px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 8px; /* Softer corners */
+    border-radius: 8px;
     outline: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .auth-container input:focus {
     border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Added shadow for focus feedback */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .auth-container button {
-    padding: 12px; /* Adjusted padding */
+    padding: 12px;
     font-size: 16px;
     color: #fff;
     background-color: #007bff;
     border: none;
-    border-radius: 8px; /* Softer corners */
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Added hover effect */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .auth-container button:hover {
     background-color: #0056b3;
-    transform: scale(1.05); /* Slight scale-up on hover */
+    transform: scale(1.05);
 }
 
 .auth-container button:disabled {
-    background-color: #b3d7ff; /* Lighter color for disabled state */
+    background-color: #b3d7ff;
     cursor: not-allowed;
 }
 
 .auth-container .error {
-    color: #d9534f; /* Red for error message */
+    color: #d9534f;
     font-size: 14px;
     margin-bottom: 15px;
-    text-align: center; /* Centered for better alignment */
-    animation: shake 0.3s ease-in-out; /* Shake animation for errors */
+    text-align: center;
+    animation: shake 0.3s ease-in-out;
 }
 
 /* Keyframes for animations */
@@ -94,5 +95,27 @@
     }
     75% {
         transform: translateX(-5px);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .auth-container h2 {
+        font-size: 22px;
+    }
+
+    .auth-container button {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .auth-container h2 {
+        font-size: 20px;
     }
 }

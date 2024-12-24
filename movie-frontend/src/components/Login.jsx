@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../api/movieApi';
-import './Auth.css';
+import './Login.css';
 
 const Login = () => {
     const [formData, setFormData] = useState({ username: '', password: '' });

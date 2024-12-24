@@ -18,14 +18,33 @@ public class MovieController {
     @Autowired
     private MovieService service;
 
+    // Fetch all movies
     @GetMapping
     public ResponseEntity<List<Movie>> getMovies() {
-        return new ResponseEntity<List<Movie>>(service.findAllMovies(), HttpStatus.OK);
+        List<Movie> movies = service.findAllMovies();
+        return new ResponseEntity<>(movies, HttpStatus.OK);
     }
 
+    // Fetch a single movie by IMDb ID
     @GetMapping("/{imdbId}")
-    public ResponseEntity<Optional<Movie>> getSingleMovie(@PathVariable String imdbId){
-        return new ResponseEntity<Optional<Movie>>(service.findMovieByImdbId(imdbId), HttpStatus.OK);
+    public ResponseEntity<Optional<Movie>> getSingleMovie(@PathVariable String imdbId) {
+        Optional<Movie> movie = service.findMovieByImdbId(imdbId);
+        if (movie.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(movie, HttpStatus.OK);
+    }
+
+    // Fetch movies by genre
+    @GetMapping("/genre/{genre}")
+    public ResponseEntity<List<Movie>> getMoviesByGenre(@PathVariable String genre) {
+        List<Movie> moviesByGenre = service.findMoviesByGenre(genre);
+
+        if (moviesByGenre.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(moviesByGenre); // Return empty list for clarity
+        }
+
+        return new ResponseEntity<>(moviesByGenre, HttpStatus.OK);
     }
 }
-

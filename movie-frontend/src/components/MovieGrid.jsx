@@ -47,7 +47,7 @@ const MovieGrid = () => {
                     />
                     <div className="details">
                         <h3>{movie.title || 'Unknown Title'}</h3>
-                        <p>{movie.genres || 'Unknown Genre'}</p>
+                        <p>{movie.genres[0] || 'Unknown Genre'}</p>
                     </div>
                 </div>
             ))}

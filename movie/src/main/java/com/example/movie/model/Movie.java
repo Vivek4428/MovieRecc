@@ -14,6 +14,7 @@ public class Movie {
     private String description;
     private String poster;
     private List<String> backdrops;
+    private List<String> genres; // Updated to handle genres as a list
 
     // Getters and Setters
     public String getId() {
@@ -62,5 +63,13 @@ public class Movie {
 
     public void setBackdrops(List<String> backdrops) {
         this.backdrops = backdrops;
+    }
+
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
     }
 }

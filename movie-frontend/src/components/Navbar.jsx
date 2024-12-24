@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { searchMovies } from "../api/movieApi"; // Import searchMovies from updated API
 import "./NavBar.css";
 
 const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isSearching, setIsSearching] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -13,10 +16,18 @@ const Navbar = () => {
         setIsLoggedIn(!!token);
     }, []);
 
-    const handleSearch = (e) => {
+    const handleSearch = async (e) => {
         e.preventDefault();
-        // Implement search logic
-        console.log(`Searching for: ${searchQuery}`);
+        setIsSearching(true);
+        try {
+            const results = await searchMovies(searchQuery);
+            console.log("Search Results:", results);
+            navigate("/search", { state: { results } }); // Navigate to a search results page
+        } catch (error) {
+            console.error("Error searching movies:", error.message);
+        } finally {
+            setIsSearching(false);
+        }
     };
 
     const handleLogout = () => {
@@ -25,9 +36,17 @@ const Navbar = () => {
         navigate("/login");
     };
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+    // Toggle dropdown visibility
+    // const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
+    const toggleDropdown = () => {
+        setIsDropdownOpen((prev) => {
+          console.log("Dropdown State Changed:", !prev);
+          return !prev;
+        });
+      };
+      
 
     return (
         <nav>
@@ -42,10 +61,42 @@ const Navbar = () => {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
-                    <button type="submit">Search</button>
+                    <button type="submit" disabled={isSearching}>
+                        {isSearching ? "Searching..." : "Search"}
+                    </button>
                 </form>
                 <div className="links">
-                    <Link to="/genres">Genres</Link>
+                    <div className="dropdown">
+                        {/* Click event to toggle dropdown */}
+                        <div
+                            className="dropdown-link"
+                            onClick={toggleDropdown}
+                            aria-label="Genre Dropdown"
+                        >
+                            Genres
+                        </div>
+                        {/* Dropdown menu */}
+                        {isDropdownOpen && (
+                            <ul className="dropdown-menu">
+                                {[
+                                    "Action",
+                                    "Thriller",
+                                    "Crime",
+                                    "Science Fiction",
+                                    "Animation",
+                                    "Adventure",
+                                    "Comedy",
+                                    "Family",
+                                    "Horror",
+                                    "Fantasy",
+                                ].map((genre) => (
+                                    <li key={genre}>
+                                        <Link to={`/genre/${genre}`}>{genre}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
                     <Link to="/about">About</Link>
                     {!isLoggedIn ? (
                         <>
@@ -59,7 +110,11 @@ const Navbar = () => {
                     )}
                 </div>
             </div>
-            <div className="hamburger" onClick={toggleMenu}>
+            <div
+                className="hamburger"
+                onClick={toggleMenu}
+                aria-label="Toggle navigation menu"
+            >
                 <span></span>
                 <span></span>
                 <span></span>

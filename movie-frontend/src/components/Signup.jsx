@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signupUser } from '../api/movieApi';
-import './Auth.css';
+import './Signup.css';
 
 const Signup = () => {
     const [formData, setFormData] = useState({ username: '', email: '', password: '' });
@@ -16,7 +16,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-        setError(''); // Reset error message
+        setError('');
 
         try {
             await signupUser(formData);

@@ -32,6 +32,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
+
         final String authHeader = request.getHeader("Authorization");
 
         if (!isBearerToken(authHeader)) {
@@ -39,21 +40,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        final String jwt = authHeader.substring(7);
-        final String username;
-
+        final String jwt = authHeader.substring(7); // Remove "Bearer " prefix
         try {
-            username = jwtUtil.extractUsername(jwt);
-            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            String username = jwtUtil.extractUsername(jwt);
 
-                if (jwtUtil.validateToken(jwt, userDetails.getUsername())) {
-                    UsernamePasswordAuthenticationToken authToken =
-                            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    SecurityContextHolder.getContext().setAuthentication(authToken);
-                }
+            // Validate username and check if authentication is already set
+            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                authenticateUser(jwt, username, request);
             }
+
         } catch (Exception e) {
             handleUnauthorizedResponse(response, e);
             return;
@@ -66,10 +61,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         return authHeader != null && authHeader.startsWith("Bearer ");
     }
 
+    private void authenticateUser(String jwt, String username, HttpServletRequest request) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
+        if (jwtUtil.validateToken(jwt, userDetails.getUsername())) {
+            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                    userDetails, null, userDetails.getAuthorities());
+            authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(authToken);
+        }
+    }
+
     private void handleUnauthorizedResponse(HttpServletResponse response, Exception e) throws IOException {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write("{\"error\": \"Unauthorized access: " + e.getMessage() + "\"}");
+        response.getWriter().write(String.format("{\"error\": \"Unauthorized access: %s\"}", e.getMessage()));
     }
 }

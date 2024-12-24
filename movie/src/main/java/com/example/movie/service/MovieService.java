@@ -15,11 +15,18 @@ public class MovieService {
     @Autowired
     private MovieRepository repository;
 
+    // Fetch all movies
     public List<Movie> findAllMovies() {
         return repository.findAll();
     }
+
+    // Fetch a movie by IMDb ID
     public Optional<Movie> findMovieByImdbId(String imdbId) {
         return repository.findMovieByImdbId(imdbId);
     }
-}
 
+    // Fetch movies by genre
+    public List<Movie> findMoviesByGenre(String genre) {
+        return repository.findByGenresIgnoreCase(genre);
+    }
+}

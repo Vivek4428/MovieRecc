@@ -1,46 +1,66 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { fetchMoviesByGenre } from '../api/movieApi';
-import styled from 'styled-components';
+import './GenrePage.css';
 
 const GenrePage = () => {
     const { genre } = useParams();
+    const navigate = useNavigate();
     const [movies, setMovies] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data } = await fetchMoviesByGenre(genre);
-            setMovies(data);
+            setLoading(true);
+            try {
+                const data = await fetchMoviesByGenre(genre);
+                setMovies(data);
+                setErrorMessage('');
+            } catch (error) {
+                if (error.message.includes('401')) {
+                    setErrorMessage('You need to log in to view movies by genre.');
+                } else if (error.message.includes('404')) {
+                    setErrorMessage(`No movies found in the "${genre}" genre.`);
+                } else {
+                    setErrorMessage('Unable to load movies. Please try again later.');
+                }
+            } finally {
+                setLoading(false);
+            }
         };
+
         fetchData();
     }, [genre]);
 
+    const handleLoginRedirect = () => {
+        navigate('/login');
+    };
+
     return (
-        <GenreContainer>
+        <div className="genre-container">
             <h2>{genre} Movies</h2>
-            <div className="grid">
-                {movies.map((movie) => (
-                    <div className="movie" key={movie.id}>
-                        <img src={movie.posterUrl} alt={movie.title} />
-                        <h3>{movie.title}</h3>
-                    </div>
-                ))}
-            </div>
-        </GenreContainer>
+            {loading ? (
+                <div className="loading-message">Loading movies...</div>
+            ) : errorMessage ? (
+                <div className="error-message">
+                    <p>{errorMessage}</p>
+                    {errorMessage.includes('log in') && (
+                        <button onClick={handleLoginRedirect}>Log In</button>
+                    )}
+                </div>
+            ) : (
+                <div className="grid">
+                    {movies.map((movie) => (
+                        <div className="movie" key={movie.genres[0]}>
+                            <img src={movie.poster || '/placeholder.jpg'} alt={movie.title} />
+                            <h3>{movie.title}</h3>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
     );
 };
-
-const GenreContainer = styled.div`
-    padding: 2rem;
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1rem;
-    }
-    .movie img {
-        width: 100%;
-        border-radius: 8px;
-    }
-`;
 
 export default GenrePage;
