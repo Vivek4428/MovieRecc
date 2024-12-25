@@ -9,7 +9,7 @@ import Signup from './components/Signup';
 import About from './components/About';
 import Search from './components/Search';
 import Movie from './pages/Movie'
-import NotFound from './pages/NotFound'; // New NotFound component
+import NotFound from './pages/NotFound';
 
 function App() {
     return (
@@ -24,6 +24,7 @@ function App() {
                     {/* Genre Pages (dynamic) */}
                     <Route path="/genre/:genre" element={<GenrePage />} />
 
+                    {/* Search Page */}
                     <Route path="/search" element={<Search />} />
 
 
@@ -34,6 +35,7 @@ function App() {
                     {/* About Page */}
                     <Route path="/about" element={<About />} />
 
+                    {/* Movie Details Page */}
                     <Route path="/movie" element={<Movie />} />
 
                     {/* Catch-all route for 404 errors */}

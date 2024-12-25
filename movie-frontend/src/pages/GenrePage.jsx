@@ -10,6 +10,10 @@ const GenrePage = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(true);
 
+    const handleMovieClick = (movie) => {
+        navigate("/movie", { state: { movie } })
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -52,7 +56,7 @@ const GenrePage = () => {
             ) : (
                 <div className="grid">
                     {movies.map((movie) => (
-                        <div className="movie" key={movie.genre}>
+                        <div className="movie" key={movie.genre} onClick={() => handleMovieClick(movie)}>
                             <img src={movie.poster || '/placeholder.jpg'} alt={movie.title} />
                             <h3>{movie.title}</h3>
                         </div>

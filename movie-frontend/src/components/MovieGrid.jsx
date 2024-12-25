@@ -10,7 +10,7 @@ const MovieGrid = () => {
     const navigate = useNavigate();
 
     const handleMovieClick = (movie) => {
-        navigate("/movie", { state: { movie } }); // Pass the selected movie to the Movie page
+        navigate("/movie", { state: { movie } })
     };
 
     useEffect(() => {

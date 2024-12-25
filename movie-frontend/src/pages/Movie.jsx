@@ -15,6 +15,7 @@ const Movies = () => {
             </div>
         );
     }
+    console.log(movie.releaseDate)
 
     return (
         <div className="movie-details-container">

@@ -11,8 +11,9 @@ public class Movie {
     private String id;
     private String imdbId;
     private String title;
-    private String description;
     private String poster;
+    private String trailerLink;
+    private String releaseDate;
     private List<String> backdrops;
     private List<String> genres; // Updated to handle genres as a list
 
@@ -41,20 +42,28 @@ public class Movie {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getPoster() {
         return poster;
     }
 
     public void setPoster(String poster) {
         this.poster = poster;
+    }
+
+    public String getTrailerLink() {
+        return trailerLink;
+    }
+
+    public void setTrailerLink(String trailerLink) {
+        this.trailerLink = trailerLink;
+    }
+    
+    public String getReleaseDate(){
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate){
+        this.releaseDate = releaseDate;
     }
 
     public List<String> getBackdrops() {

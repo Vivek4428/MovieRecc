@@ -5,9 +5,10 @@ import "./Search.css"; // Optional CSS file for styling
 const Search = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { results } = location.state || { results: [] }; // Get search results or default to an empty array
+    const { results } = location.state || { results: [] }; 
+
     const handleMovieClick = (movie) => {
-        navigate("/movie", { state: { movie } }); // Pass the selected movie to the Movie page
+        navigate("/movie", { state: { movie } }); 
     };
     return (
         <div className="search-page">
