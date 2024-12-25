@@ -7,9 +7,9 @@ import GenrePage from './genrepage/GenrePage';
 import Login from './login/Login';
 import Signup from './signup/Signup';
 import About from './about/About';
-import Search from './search/Search';
 import Movie from './movie/Movie'
 import NotFound from './notfound/NotFound';
+import Search from './search/Search';
 
 function App() {
     return (

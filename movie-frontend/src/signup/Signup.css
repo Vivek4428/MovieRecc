@@ -14,7 +14,7 @@
 }
 
 .signup-form {
-    max-width: 400px;
+    max-width: 300px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -26,6 +26,7 @@
 }
 
 .auth-container input {
+    width: 100%;
     margin-bottom: 15px;
     padding: 12px; /* Increased padding for better touch interaction */
     font-size: 16px;
