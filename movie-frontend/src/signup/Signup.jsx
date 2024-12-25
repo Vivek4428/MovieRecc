@@ -32,7 +32,7 @@ const Signup = () => {
 
     return (
         <div className="auth-container">
-            <form onSubmit={handleSubmit} aria-label="Signup form">
+            <form onSubmit={handleSubmit} className="signup-form">
                 <h2>Signup</h2>
                 {error && <p className="error">{error}</p>}
                 <input

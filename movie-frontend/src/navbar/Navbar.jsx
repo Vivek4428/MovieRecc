@@ -1,59 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 import { searchMovies } from "../api/movieApi"; 
 import "./NavBar.css";
 
 const Navbar = () => {
+    const { isLoggedIn, setIsLoggedIn } = useContext(UserContext); 
     const [searchQuery, setSearchQuery] = useState("");
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isSearching, setIsSearching] = useState(false);
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        setIsLoggedIn(!!token);
-    }, []);
+    const navigate = useNavigate();
 
     const handleSearch = async (e) => {
         e.preventDefault();
         setIsSearching(true);
         const filteredMovies = [];
         try {
-            const results = await searchMovies(); // Fetch all movies
-            const query = searchQuery.toLowerCase(); // Convert search query to lowercase
-            // Filter movies based on the search query
+            const results = await searchMovies();
+            const query = searchQuery.toLowerCase();
             results.forEach((movie) => {
                 if (movie.title.toLowerCase().includes(query)) {
                     filteredMovies.push(movie);
                 }
             });
-
-            console.log("Filtered Movies:", filteredMovies);
-
-            // Navigate to the search results page and pass the filtered movies
             navigate("/search", { state: { results: filteredMovies } });
         } catch (error) {
             console.error("Error during movie search:", error.message);
         } finally {
-            setIsSearching(false); // End the search
+            setIsSearching(false);
         }
     };
 
     const handleLogout = () => {
         localStorage.removeItem("token");
-        setIsLoggedIn(false);
+        setIsLoggedIn(false); // Update context state
         navigate("/login");
-    };
-
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-    const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
-
-    const handleGenreClick = (genre) => {
-        setIsDropdownOpen(false);
-        navigate(`/genre/${genre}`);
     };
 
     return (
@@ -75,19 +58,15 @@ const Navbar = () => {
                 </form>
                 <div className="links">
                     <div className="dropdown">
-                        {/* Click event to toggle dropdown */}
                         <div
                             className="dropdown-link"
-                            onClick={toggleDropdown}
-                            aria-label="Genre Dropdown"
+                            onClick={() => setIsDropdownOpen((prev) => !prev)}
                         >
                             Genres
                         </div>
-                        {/* Dropdown menu */}
                         {isDropdownOpen && (
                             <ul className="dropdown-menu">
-                                {[
-                                    "Action",
+                                {["Action",
                                     "Thriller",
                                     "Crime",
                                     "Science Fiction",
@@ -96,11 +75,10 @@ const Navbar = () => {
                                     "Comedy",
                                     "Family",
                                     "Horror",
-                                    "Fantasy",
-                                ].map((genre) => (
+                                    "Fantasy"].map((genre) => (
                                     <li key={genre}>
                                         <button
-                                            onClick={() => handleGenreClick(genre)}
+                                            onClick={() => navigate(`/genre/${genre}`)}
                                             className="genre-button"
                                         >
                                             {genre}
@@ -123,11 +101,7 @@ const Navbar = () => {
                     )}
                 </div>
             </div>
-            <div
-                className="hamburger"
-                onClick={toggleMenu}
-                aria-label="Toggle navigation menu"
-            >
+            <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 <span></span>
                 <span></span>
                 <span></span>

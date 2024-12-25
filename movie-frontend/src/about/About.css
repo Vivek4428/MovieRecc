@@ -15,11 +15,12 @@ h1 {
     margin-bottom: 1rem;
 }
 
-p {
+.about-container p {
     line-height: 1.6;
     font-size: 1.1rem;
     margin-bottom: 1rem;
     color: #dcdcdc;
+    text-align: center;
 }
 
 ul {

@@ -54,9 +54,9 @@ const GenrePage = () => {
                     )}
                 </div>
             ) : (
-                <div className="grid">
+                <div className="grids">
                     {movies.map((movie) => (
-                        <div className="movie" key={movie.genre} onClick={() => handleMovieClick(movie)}>
+                        <div className="movies" key={movie.genre} onClick={() => handleMovieClick(movie)}>
                             <img src={movie.poster || '/placeholder.jpg'} alt={movie.title} />
                             <h3>{movie.title}</h3>
                         </div>

@@ -10,38 +10,48 @@
     text-align: center;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
-    justify-items: start;
-}
-
-.movie {
+.grids {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    text-align: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem;
 }
 
-.movie img {
+.movies {
+    width: 200px;
+    height: 400px;
+    background: #0c111b;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movies:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.movies img {
     width: 100%;
     max-height: 300px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s;
 }
 
-.movie img:hover {
+.movies img:hover {
     transform: scale(1.05);
 }
 
-.movie h3 {
+.movies h3 {
     margin-top: 0.5rem;
-    font-size: 1.1rem;
-    color: #c4c3c4;
+    font-size: 1.3rem;
+    color: #e7e7e7;
 }
 
 .loading-message {
@@ -82,18 +92,18 @@
         font-size: 1.5rem;
     }
 
-    .movie h3 {
+    .movies h3 {
         font-size: 1rem;
     }
 }
 
 @media (max-width: 480px) {
-    .grid {
+    .grids {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 0.5rem;
     }
 
-    .movie img {
+    .movies img {
         max-height: 200px;
     }
 }

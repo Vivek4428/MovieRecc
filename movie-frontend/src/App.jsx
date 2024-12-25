@@ -1,15 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import GenrePage from './pages/GenrePage';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import About from './components/About';
-import Search from './components/Search';
-import Movie from './pages/Movie'
-import NotFound from './pages/NotFound';
+import Navbar from './navbar/Navbar';
+import Footer from './footer/Footer';
+import Home from './home/Home';
+import GenrePage from './genrepage/GenrePage';
+import Login from './login/Login';
+import Signup from './signup/Signup';
+import About from './about/About';
+import Search from './search/Search';
+import Movie from './movie/Movie'
+import NotFound from './notfound/NotFound';
 
 function App() {
     return (

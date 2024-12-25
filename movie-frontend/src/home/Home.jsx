@@ -1,6 +1,6 @@
 import React from 'react';
-import Hero from '../components/Hero';
-import MovieGrid from '../components/MovieGrid';
+import Hero from '../hero/Hero';
+import MovieGrid from '../moviegrid/MovieGrid';
 
 const Home = () => {
     return (

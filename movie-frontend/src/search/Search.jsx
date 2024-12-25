@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "./Search.css"; // Optional CSS file for styling
+import "./Search.css"; 
 
 const Search = () => {
     const location = useLocation();
@@ -18,13 +18,13 @@ const Search = () => {
                     {results.map((movie) => (
                         <div key={movie.id} className="movie-card" onClick={() => handleMovieClick(movie)}>
                             <img
-                                src={movie.poster || "placeholder.jpg"} // Placeholder if no image is available
+                                src={movie.poster || "placeholder.jpg"}
                                 alt={movie.title}
-                                className="movie-poster"
+                                className="movie-posters"
                             />
-                            <div className="movie-info">
-                                <h3 className="movie-title">{movie.title}</h3>
-                                <p className="details">
+                            <div className="movie-infos">
+                                <h3 className="movie-titles">{movie.title}</h3>
+                                <p className="detail">
                                 {movie.genres[0]}
                                 </p>
                             </div>

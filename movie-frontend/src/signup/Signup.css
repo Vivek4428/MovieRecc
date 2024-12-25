@@ -3,14 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
-    width: 90%; 
-    max-width: 400px;
-    padding: 20px;
-    background-color: #ffffff; 
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
-    border-radius: 15px; 
-    animation: fadeIn 0.5s ease-in-out;
+    height: 80vh;
 }
 
 .auth-container h2 {
@@ -20,10 +13,16 @@
     font-weight: bold;
 }
 
-.auth-container form {
+.signup-form {
+    max-width: 400px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.22);
+    padding: 30px 50px;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    align-items: center;
+    text-align: center;
 }
 
 .auth-container input {

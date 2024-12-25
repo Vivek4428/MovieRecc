@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import './MovieGrid.css'; // Import the CSS file
+import './MovieGrid.css';
 import { fetchMovies } from '../api/movieApi';
 
 const MovieGrid = () => {
@@ -50,10 +50,11 @@ const MovieGrid = () => {
                     <img
                         src={movie.poster || 'https://via.placeholder.com/300x450'}
                         alt={movie.title || 'Untitled Movie'}
+                        className='moviesimg'
                     />
                     <div className="details">
                         <h3>{movie.title || 'Unknown Title'}</h3>
-                        <p>{movie.genres[0] || 'Unknown Genre'}</p>
+                        <p><b>Genres: </b>{movie.genres?.join(", ") || "N/A"}</p>
                     </div>
                 </div>
             ))}
