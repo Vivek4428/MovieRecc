@@ -13,16 +13,25 @@ nav {
   font-size: 1.8rem;
   font-weight: bold;
   color: white;
+  display: inline-flex;
+  gap: 0.3rem;
 }
 
 .brand a {
   text-decoration: none;
-  color: #1f80e0;
+  color: #1169c1;
   transition: color 0.3s ease;
 }
 
 .brand a:hover {
-  color: #e63946;
+  color: #127be3;
+}
+
+.brand>img{
+  height: 5vh;
+  width: 20%;
+  margin: 0;
+  cursor: pointer;
 }
 
 .NavBarContainer {
@@ -130,10 +139,10 @@ nav {
   position: absolute;
   top: 100%;
   left: 0;
-  background: #0c111b;
+  background: #182236;
   flex-direction: column;
   padding: 0.5rem 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.3);
   border-radius: 5px;
   z-index: 99;
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -143,6 +152,8 @@ nav {
   display: flex;
   opacity: 1;
   transform: translateY(0);
+  text-align: center;
+  align-items: center;
 }
 
 .dropdown-menu li {
@@ -156,8 +167,8 @@ nav {
   color: white;
   background: none;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
-  text-align: left;
   transition: background 0.3s ease-in-out;
 }
 
@@ -199,16 +210,16 @@ nav {
 
   .NavBarContainer form {
     margin: 0.5rem 0;
-    width: 90%;
   }
 
   .NavBarContainer input {
-    width: 100%;
-    margin-right: 0;
+    width: 200px;
+    margin-right: 0.5rem;
+    justify-self: center;
   }
 
   .submit-button {
-    width: 100%;
+    width: 80px;
     margin-top: 0.5rem;
   }
 
@@ -221,7 +232,6 @@ nav {
   .links a,
   .links button {
     margin: 0.5rem 0;
-    width: 90%;
     text-align: center;
   }
 
@@ -230,6 +240,7 @@ nav {
     width: 100%;
     box-shadow: none;
     padding: 0;
+    align-items: center;
   }
 
   .hamburger {

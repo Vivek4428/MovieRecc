@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../api/movieApi";
-import "./Login.css";
 import { UserContext } from "../context/UserContext";
+import { loginUser } from "../api/movieApi";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./Login.css";
 
 const Login = () => {
   const { setIsLoggedIn } = useContext(UserContext);
@@ -18,13 +20,23 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await loginUser(formData); // Call your login API
-      if (response?.token) {      // Correct it >>>>>>
+      if (response?.token) {
+        // Correct it >>>>>>
 
         localStorage.setItem("token", response.token); // Store the token
 
         setIsLoggedIn(true); // Update context state
-        
-        navigate("/"); // Redirect to the home page
+        toast.success("Login Successful", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        navigate(-1); // Redirect to the home page
       } else {
         setError("Login failed. Please try again.");
       }

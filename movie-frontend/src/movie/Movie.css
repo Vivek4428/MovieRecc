@@ -1,177 +1,205 @@
 .movie-details-container {
-    padding: 1.5rem;
-    color: white;
-    background: linear-gradient(to right, #030b17 80%, #062a7200);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding: 1rem;
+  color: white;
+  background: #030b17;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .movie-header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-    align-items: center;
-    gap: 1.5rem;
-    margin: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: center;
+  gap: 2rem;
+  margin: 0 1.5rem;
 }
 
 .movie-poster {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    outline: #b5b5b5 1px solid;
+  width: 100%;
+  max-width: 20vw;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(17, 21, 65, 0.2);
+  outline: #b5b5b5 1px solid;
+}
+.movietrailervideo {
+  max-width: 100%;
+  width: 30vw;
+  height: 20vw;
+  overflow: hidden;
+  border: none;
+  border-radius: 8px;
+  box-shadow: #06152d 2px 0px 30px 3px;
 }
 
 .movie-info {
-    max-width: 600px;
-    text-align: left;
+  max-width: 500px;
+  text-align: left;
 }
 
 .movie-title {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    text-align: left;
+  font-size: 2.5rem;
+  margin: 1rem 0.5rem;
+  text-align: left;
 }
 
 .movie-release-date,
 .movie-genres,
-.movie-trailer {
-    font-size: 1.2rem;
-    margin: 5px 0;
+.movie-trailer,
+.imdb-id {
+  font-size: 1.1rem;
+  margin: 0.2rem 0.5rem;
 }
 
 .movie-trailer a {
-    color: #1e90ff;
-    text-decoration: none;
+  color: #1e90ff;
+  text-decoration: none;
 }
 
 .movie-trailer a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .movie-backdrops {
-    margin-top: 20px;
-    width: 100%;
+  margin-top: 1.2rem;
+  width: 100%;
+}
+
+.movie-backdrops h2 {
+  font-size: 2rem;
 }
 
 .backdrop-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    padding: 1rem;
-    margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  margin-top: 1rem;
 }
 
 .backdrop-image {
-    height: 200px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 200px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .backdrop-image:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .back-button {
-    width: 7rem;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #1e90ff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
+  width: 7rem;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .back-button:hover {
-    background-color: #147bd1;
+  background-color: #147bd1;
 }
 
 .no-movie {
-    text-align: center;
-    color: gray;
-    margin-top: 50px;
+  text-align: center;
+  color: gray;
+  margin-top: 50px;
 }
 
 .no-movie button {
-    padding: 10px 20px;
-    background-color: #1e90ff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
+  padding: 10px 20px;
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .no-movie button:hover {
-    background-color: #147bd1;
+  background-color: #147bd1;
 }
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
-    .movie-info {
-        max-width: 100%;
-        text-align: center;
-    }
+  .movie-info {
+    max-width: 100%;
+    text-align: left;
+  }
 
-    .movie-title {
-        font-size: 1.5rem;
-    }
+  .movie-title {
+    font-size: 2rem;
+  }
 
-    .back-button {
-        font-size: 0.9rem;
-        padding: 8px 16px;
-    }
+  .movie-poster {
+    max-width: 40%;
+  }
 
-    .backdrop-gallery {
-        justify-content: center;
-        gap: 1rem;
-    }
+  .movietrailervideo {
+    height: 100%;
+    width: 100%;
+  }
 
-    .backdrop-image {
-        height: 150px;
-    }
+  .back-button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  .backdrop-gallery {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .backdrop-image {
+    height: 150px;
+  }
 }
 
 @media (max-width: 480px) {
-    .movie-header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
+  .movie-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
-    .movie-poster {
-        max-width: 250px;
-    }
+  .movie-poster {
+    max-width: 250px;
+  }
 
-    .movie-title {
-        font-size: 1.2rem;
-    }
+  .movie-title {
+    font-size: 1.5rem;
+  }
 
-    .movie-release-date,
-    .movie-genres,
-    .movie-trailer {
-        font-size: 0.9rem;
-    }
+  .movie-release-date,
+  .movie-genres,
+  .movie-trailer {
+    font-size: 0.9rem;
+  }
 
-    .back-button {
-        font-size: 0.8rem;
-        padding: 6px 12px;
-    }
+  .movietrailervideo {
+    height: 100%;
+    width: 100%;
+  }
 
-    .backdrop-gallery {
-        flex-wrap: wrap;
-        gap: 0.8rem;
-    }
+  .back-button {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
 
-    .backdrop-image {
-        height: 120px;
-    }
+  .backdrop-gallery {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .backdrop-image {
+    height: 120px;
+  }
 }
