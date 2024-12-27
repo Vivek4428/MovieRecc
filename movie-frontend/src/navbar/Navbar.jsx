@@ -118,7 +118,7 @@ const Navbar = () => {
               </ul>
             )}
           </div>
-          <Link to="/about">About</Link>
+          <Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link>
           {!isLoggedIn ? (
             <>
               <Link to="/login" onClick={() => setIsMenuOpen(false)}>

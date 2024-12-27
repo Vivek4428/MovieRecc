@@ -1,5 +1,6 @@
 .search-page {
   padding: 20px;
+  background-color: #080e1b;
 }
 
 .results-container {
@@ -17,7 +18,7 @@
   background: #0c111b;
   padding: 1rem;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 6px rgba(33, 33, 33, 0.8);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 

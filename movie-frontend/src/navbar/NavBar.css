@@ -1,10 +1,19 @@
+:root {
+  --primary-color: #1f80e0;
+  --hover-color: #1464b3;
+  --background-color: #0c111b;
+  --input-background: #1f1f1f;
+  --danger-color: #e63946;
+  --danger-hover: #b52534;
+}
+
 nav {
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 4%;
-  background: #0c111b;
+  background: var(--background-color);
   position: relative;
   z-index: 10;
 }
@@ -19,15 +28,15 @@ nav {
 
 .brand a {
   text-decoration: none;
-  color: #1169c1;
-  transition: color 0.3s ease;
+  color: var(--primary-color);
+  transition: color 0.4s ease;
 }
 
 .brand a:hover {
-  color: #127be3;
+  color: var(--hover-color);
 }
 
-.brand>img{
+.brand > img {
   height: 5vh;
   width: 20%;
   margin: 0;
@@ -56,7 +65,7 @@ nav {
   border-radius: 5px;
   outline: none;
   color: #fff;
-  background: #1f1f1f;
+  background: var(--input-background);
   font-size: 1rem;
   margin-right: 0.5rem;
   transition: background 0.3s ease-in-out;
@@ -64,13 +73,14 @@ nav {
 
 .NavBarContainer input:focus {
   background: #333;
+  outline: 2px solid var(--primary-color);
 }
 
 .submit-button {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 5px;
-  background: #1f80e0;
+  background: var(--primary-color);
   color: white;
   font-size: 1rem;
   cursor: pointer;
@@ -83,7 +93,7 @@ nav {
 }
 
 .submit-button:hover:not(:disabled) {
-  background: #1464b3;
+  background: var(--hover-color);
 }
 
 .links {
@@ -103,11 +113,11 @@ nav {
 
 .links a:hover,
 .links button:hover {
-  color: #1f80e0;
+  color: var(--primary-color);
 }
 
 .logout-button {
-  background: #e63946;
+  background: var(--danger-color);
   color: #fff;
   border-radius: 5px;
   padding: 0.5rem 1rem;
@@ -116,7 +126,7 @@ nav {
 }
 
 .logout-button:hover {
-  background: #b52534;
+  background: var(--danger-hover);
 }
 
 .dropdown {
@@ -142,10 +152,10 @@ nav {
   background: #182236;
   flex-direction: column;
   padding: 0.5rem 0;
-  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   z-index: 99;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .dropdown-menu {
@@ -173,7 +183,7 @@ nav {
 }
 
 .dropdown-menu li .genre-button:hover {
-  background: #1f80e0;
+  background: var(--primary-color);
 }
 
 .hamburger {
@@ -190,6 +200,18 @@ nav {
   transition: all 0.3s ease-in-out;
 }
 
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .NavBarContainer {
@@ -198,7 +220,7 @@ nav {
     left: 0;
     width: 100%;
     flex-direction: column;
-    background: #0c111b;
+    background: var(--background-color);
     transform: translateX(-100%);
     padding: 1rem 0;
     z-index: 10;

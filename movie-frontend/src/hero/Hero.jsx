@@ -35,6 +35,14 @@ const Hero = () => {
     }
   }, [movies]);
 
+  const handleNext = () => {
+    setCurrent((prev) => (prev + 1) % movies.length);
+  };
+
+  const handlePrev = () => {
+    setCurrent((prev) => (prev - 1 + movies.length) % movies.length);
+  };
+
   if (isLoading) {
     return <div className="hero-container">Loading...</div>;
   }
@@ -45,20 +53,31 @@ const Hero = () => {
 
   return (
     <div className="hero-container">
-      {movies.length > 0 && (
-        <div className="hero-content">
-          <img
-            src={movies[current]?.backdrops?.[3] || movies[current]?.poster}
-            alt={movies[current]?.title || "Movie"}
-            className="hero-image fade"
-          />
-          <div className="hero-overlay">
-            <h2 className="hero-title">
-              {movies[current]?.title || "Untitled Movie"}
-            </h2>
+      <div className="hero-slider">
+        {movies.map((movie, index) => (
+          <div
+            key={movie.id || index}
+            className={`hero-slide ${
+              index === current ? "active" : "inactive"
+            }`}
+          >
+            <img
+              src={movie?.backdrops?.[3] || movie?.poster}
+              alt={movie?.title || "Movie"}
+              className="hero-image"
+            />
+            <div className="hero-overlay">
+              <h2 className="hero-title">{movie?.title || "Untitled Movie"}</h2>
+            </div>
           </div>
-        </div>
-      )}
+        ))}
+      </div>
+      <button className="hero-arrow prev" onClick={handlePrev}>
+        &#8249;
+      </button>
+      <button className="hero-arrow next" onClick={handleNext}>
+        &#8250;
+      </button>
     </div>
   );
 };
