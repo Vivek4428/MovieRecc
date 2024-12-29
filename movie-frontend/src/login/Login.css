@@ -7,7 +7,7 @@
 }
 
 .login-form {
-  max-width: 300px;
+  max-width: 30vw;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -43,6 +43,7 @@
 
 .auth-container button {
   padding: 12px;
+  margin-top: 0.6rem;
   font-size: 16px;
   color: #fff;
   background-color: #007bff;
@@ -68,6 +69,15 @@
   margin-bottom: 15px;
   text-align: center;
   animation: shake 0.3s ease-in-out;
+}
+
+.signup-redirect{
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: #4f4f4f;
+  margin-top: 0.5rem;
 }
 
 /* Keyframes for animations */
@@ -107,6 +117,10 @@
   .auth-container button {
     font-size: 14px;
   }
+
+  .signup-redirect{
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -117,5 +131,9 @@
 
   .auth-container h2 {
     font-size: 20px;
+  }
+
+  .signup-redirect{
+    font-size: 0.7rem;
   }
 }

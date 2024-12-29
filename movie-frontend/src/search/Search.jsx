@@ -53,7 +53,7 @@ const Search = () => {
           ))}
         </div>
       ) : (
-        <p>No movies found matching your search criteria.</p>
+        <p className="no-result">No movies found matching your search criteria.</p>
       )}
     </div>
   );

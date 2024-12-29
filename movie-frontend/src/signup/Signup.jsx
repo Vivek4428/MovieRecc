@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signupUser } from "../api/movieApi";
+import { MdArrowOutward } from "react-icons/md";
 import "./Signup.css";
 
 const Signup = () => {
@@ -69,6 +70,7 @@ const Signup = () => {
         <button type="submit" disabled={isLoading}>
           {isLoading ? "Signing up..." : "Signup"}
         </button>
+        <Link to={'/login'} className="login-redirect"><p>Have Account? Signup<MdArrowOutward /></p></Link>
       </form>
     </div>
   );

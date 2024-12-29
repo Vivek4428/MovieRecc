@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { loginUser } from "../api/movieApi";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { MdArrowOutward } from "react-icons/md";
 import "./Login.css";
 
 const Login = () => {
@@ -68,6 +69,8 @@ const Login = () => {
           required
         />
         <button type="submit">Login</button>
+        <Link to={'/signup'} className="signup-redirect"><p>No Account? Signup<MdArrowOutward /></p>
+        </Link>
       </form>
     </div>
   );

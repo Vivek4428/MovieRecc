@@ -1,6 +1,9 @@
 .search-page {
   padding: 20px;
   background-color: #080e1b;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100%;
 }
 
 .results-container {
@@ -69,6 +72,12 @@
   text-align: center;
 }
 
+.no-result{
+  font-size: 1.5rem;
+  color: #bfbfbf;
+  text-align: center;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .results-container {
@@ -93,6 +102,10 @@
     font-size: 12px;
     margin: 8px 0;
   }
+
+  .no-result{
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -112,5 +125,9 @@
 
   .movie-overview {
     font-size: 10px;
+  }
+
+  .no-result{
+    font-size: 1rem;
   }
 }
