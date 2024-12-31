@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:3000") // Adjust for production
+@CrossOrigin(origins = "https://movie-recc-lemon.vercel.app") // Adjust for production
 public class AuthController {
 
     @Autowired

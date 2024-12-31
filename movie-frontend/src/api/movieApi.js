@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Base URL configuration for the backend API
-const API = axios.create({ baseURL: "http://localhost:8080/api" });
+const API = axios.create({ baseURL: "https://movierecc-backend-production.up.railway.app/api" });
 
 // Interceptor for adding the JWT token to request headers
 API.interceptors.request.use(

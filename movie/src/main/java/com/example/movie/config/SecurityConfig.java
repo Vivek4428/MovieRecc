@@ -55,7 +55,7 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .cors(cors -> cors.configurationSource(request -> {
                 var corsConfig = new CorsConfiguration();
-                corsConfig.setAllowedOrigins(List.of("http://localhost:3000")); // Adjust as per your frontend URL
+                corsConfig.setAllowedOrigins(List.of("https://movie-recc-lemon.vercel.app","http://localhost:3000")); // Adjust as per your frontend URL
                 corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                 corsConfig.setAllowedHeaders(List.of("Authorization", "Content-Type"));
                 return corsConfig;
